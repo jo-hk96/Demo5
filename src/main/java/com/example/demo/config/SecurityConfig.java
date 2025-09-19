@@ -26,18 +26,16 @@ public class SecurityConfig {
 	}
 	
 	
-	@Bean
+	
 	public UserDetails  userDetailsService(String member){
 
 		throws UsernameNotFoundException{
-		var    email = username.toLowerCase();
-		Member member = memberRepository
-				.findByEmail(username)
-				.orElseThrow()
+		var    email = username.toLowerCase();s
+		Member member = memberRepository.findByEmail(username).orElseThrow()
 				
 		// 권한정보 조회
 		List<Authority> authorites = authorityRepository
-				,findByMember(member);
+						,findByMember(member);
 		
 				return new MemberUserDetails(member,authorites);
 		
