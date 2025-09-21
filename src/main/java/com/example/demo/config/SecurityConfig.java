@@ -19,6 +19,10 @@ import com.example.demo.model.MemberUserDetails;
 import com.example.demo.repository.AuthorityRepository;
 import com.example.demo.repository.MemberRepository;
 
+
+//사용자가 이메일로 로그인을 시도하면, 
+//데이터베이스에서 그 이메일과 관련된 정보를 찾아서, 
+//Spring Security가 로그인 처리를 할 수 있도록 넘겨준다
 @Configuration
 public class SecurityConfig {
 	
@@ -52,11 +56,6 @@ public class SecurityConfig {
 		};
 		
 }
-	
-	
-
-	
-	
 	
 	//password BCrypt 암호화 해주는 함수
 	@Bean

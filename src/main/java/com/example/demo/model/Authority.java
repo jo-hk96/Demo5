@@ -15,8 +15,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Builder
+
 //Column 있어야 자동으로 만들어줌
+//@AllArgsConstructor : 모든필드를 파라미터로 받는 생성자
 @AllArgsConstructor
+//@NoArgsConstructor : 파라미터가 없는 기본생성자 (lombok)
 @NoArgsConstructor
 public class Authority{
 	

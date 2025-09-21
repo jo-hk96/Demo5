@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 @Data
 public class MemberUserDetails implements UserDetails {
+	private static final long serialVersionUID = 1L;
 	// 이제 Member와 Authority를 사용해 스프링 시큐리티에서 사용할 
 	// UserDetails 인터페이스를 구현한 MemberUserDetails 클래스를 작성
     // User Details 디폴트 구현 getUsername(), getPassword(), getAuthorities()
@@ -25,6 +26,7 @@ public class MemberUserDetails implements UserDetails {
 		this.authorities = authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
 							.toList();
 		
-		
 	}
+
+	
 }

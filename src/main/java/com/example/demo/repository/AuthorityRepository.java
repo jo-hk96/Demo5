@@ -10,7 +10,6 @@ import com.example.demo.model.Member;
 
 //멤버의 권한을 조회
 public interface AuthorityRepository extends JpaRepository<Authority ,Long>{
-
 	List<Authority> findByMember(Member member);
 
 }
