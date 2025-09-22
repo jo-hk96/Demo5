@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,6 +26,7 @@ import com.example.demo.repository.MemberRepository;
 //데이터베이스에서 그 이메일과 관련된 정보를 찾아서, 
 //Spring Security가 로그인 처리를 할 수 있도록 넘겨준다
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
@@ -54,9 +56,9 @@ public class SecurityConfig {
 			
 				return new MemberUserDetails(member, authorities );
 			}
-			
 		};
 	}
+	
 	
 	
 	@Bean
@@ -67,12 +69,16 @@ public class SecurityConfig {
 	    // 아니면 Customizer.withDefaults() 로 변경
 		//페이지별 권한 설정
 		http.authorizeHttpRequests(authorize -> authorize
-					.requestMatchers("/","/home").permitAll()
-					.requestMatchers("/member/**").hasAuthority("ROLE_ADMIN")
+					.requestMatchers("/","/home").permitAll()//로그인하지않은 사용자도 볼수있음
+					// member/** 시작하는 모든 URL은 ADMIN권한은 가진 계정만 접속가능
+					.requestMatchers("/Member/**").hasAuthority("ROLE_ADMIN")
+					.requestMatchers("/Message/**").hasAuthority("ROLE_ADMIN")
 					.anyRequest().authenticated())//로그인 하지않은 사용자는 접근 할 수 없음
 					.formLogin(Customizer.withDefaults())
 					.logout(Customizer.withDefaults());
-		return null;
+		
+		//securityFilterChain 메서드는 http 객체에 설정한 모든 규칙을 build()해서 반환해야함
+		return http.build();
 	}
 	
 	//password BCrypt 암호화 해주는 함수
