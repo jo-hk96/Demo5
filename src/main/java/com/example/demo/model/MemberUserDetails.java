@@ -23,10 +23,10 @@ public class MemberUserDetails implements UserDetails {
 		this.password = member.getPassword();
 		this.displayName = member.getName();
 		this.memberId = member.getId();
-		this.authorities = authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
-							.toList();
+		this.authorities = authorities.stream()
+				.map(authority -> new SimpleGrantedAuthority(authority.getAuthority()))
+				.toList();
 		
 	}
-
 	
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang ="ko" xmlns;th ="http://www.thymleaf.org">
+<head>
+	<meta charset = "UTF-8">
+	<title>한빛미디어</title>
+</head>
+<body>
+
+	<!--#{welcome} : message.properties 참조  -->
+	<!--${welcome} : model 참조  -->
+	<!--{welcome} : 선택된 객체의 속성 참조  -->
+	<!--@{welcome} : URL 링크 생성  -->
+	<p th:text ="#{welcome}">Greetings</p>
+	<p th:text ="#{welcome.description}">Greetings</p>
+	<p th:utext ="#{welcome.description}">Greetings</p>
+	<hr>
+	<p th:text ="${member}">Greetings</p>
+	<hr>
+		<ul th:object ="${member}">
+			<li>ID :<span th:text ="*{id}"></span></li>
+			<li th:text ="*{name}">name</li>
+			<li th:text ="*{email}">email</li>
+			<li th:text ="*{password}">password</li>
+		</ul>
+			<a th:href ="@{/home}">HOME</a>
+</body>
+</html>

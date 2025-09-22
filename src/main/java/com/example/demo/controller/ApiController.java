@@ -18,7 +18,6 @@ public class ApiController {
 			new Member(4L, "장원영", "Jang@naver.co.kr" ,null)
 		);
 	
-
 	@GetMapping("/api/members")
 	public List<Member> getMembers (Model model) {
 		return members;

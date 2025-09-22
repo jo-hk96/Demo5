@@ -20,10 +20,23 @@ public class MemberController {
 			new Member(4L, "김도윤", "DoyunKim@hanbit.co.kr" ,null)
 		);
 	
-	@GetMapping("/")
-	public String getMembers(Model model) {
-		model.addAttribute("members", members);
-		return "/member-list";
+	@GetMapping("/home")
+	public String home() {
+		return "redirect:/index.html";
 	}
-
+	
+	@GetMapping("/Member/List")
+	public String getMembers(Model model) {
+		model.addAttribute("title", "<h2>회원 목록</h2>");
+		model.addAttribute("utitle", "<h2>회원 목록</h2>");
+		model.addAttribute("members", members);
+		return "member-list";
+	}
+	
+	@GetMapping("/Message/basic")
+		public String getMessageBasic(Model model) {
+		model.addAttribute("member" ,new Member(5L , "아이유","iu12@iu.com", "1234"));
+		return "message/message-basic";
+	}
+	
 }
