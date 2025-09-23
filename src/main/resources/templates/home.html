@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <ul>
+    <li th:text="'이메일:' + ${user.username}"></li>
+    <li th:text="${user.password}"></li>
+    <th:block th:each="authority:${user.authorities}">
+      <li th:text="${authority}"></li>
+    </th:block>
+    <li th:text="${user.displayName}"></li>
+    <li th:text="${user.memberId}"></li>  
+  </ul>
+  <a href="/">Index</a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
